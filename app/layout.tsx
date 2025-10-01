@@ -47,7 +47,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body>
-      {/* <SmoothCursor/> */}
+
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

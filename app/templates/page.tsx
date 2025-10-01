@@ -4,7 +4,7 @@ import { createMDXSource } from "fumadocs-mdx";
 import { Suspense } from "react";
 import { BlogCard } from "@/components/blog-card";
 import { TagFilter } from "@/components/tag-filter";
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+import { DotPattern } from "@/components/magicui/dot-pattern";
 
 interface TemplateData {
   title: string;
@@ -77,15 +77,11 @@ export default async function TemplatesPage({
 
   return (
     <div className="min-h-screen bg-background relative">
+                  <div className="opacity-35">
+  <DotPattern />
+  </div>
       <div className="absolute top-0 left-0 z-0 w-full h-[200px] [mask-image:linear-gradient(to_top,transparent_25%,black_95%)]">
-        {/* <FlickeringGrid
-          className="absolute top-0 left-0 size-full"
-          squareSize={2}
-          gridGap={4}
-          color="#000000"
-          maxOpacity={0.5}
-          flickerChance={0.05}
-        /> */}
+
       </div>
       <div className="p-6 border-b border-border flex flex-col gap-6 min-h-[250px] justify-center relative z-10">
         <div className="max-w-7xl mx-auto w-full">
