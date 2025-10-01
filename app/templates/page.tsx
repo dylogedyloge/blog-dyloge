@@ -1,4 +1,4 @@
-import { docs, meta } from "@/.source";
+import { templateDocs, templateMeta } from "@/.source";
 import { loader } from "fumadocs-core/source";
 import { createMDXSource } from "fumadocs-mdx";
 import { Suspense } from "react";
@@ -6,7 +6,7 @@ import { BlogCard } from "@/components/blog-card";
 import { TagFilter } from "@/components/tag-filter";
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 
-interface BlogData {
+interface TemplateData {
   title: string;
   description: string;
   date: string;
@@ -18,14 +18,14 @@ interface BlogData {
   thumbnail?: string;
 }
 
-interface BlogPage {
+interface TemplatePage {
   url: string;
-  data: BlogData;
+  data: TemplateData;
 }
 
-const blogSource = loader({
-  baseUrl: "/blog",
-  source: createMDXSource(docs, meta),
+const templateSource = loader({
+  baseUrl: "/templates",
+  source: createMDXSource(templateDocs, templateMeta),
 });
 
 const formatDate = (date: Date): string => {
@@ -36,14 +36,14 @@ const formatDate = (date: Date): string => {
   });
 };
 
-export default async function HomePage({
+export default async function TemplatesPage({
   searchParams,
 }: {
   searchParams: Promise<{ tag?: string }>;
 }) {
   const resolvedSearchParams = await searchParams;
-  const allPages = blogSource.getPages() as BlogPage[];
-  const sortedBlogs = allPages.sort((a, b) => {
+  const allPages = templateSource.getPages() as TemplatePage[];
+  const sortedTemplates = allPages.sort((a, b) => {
     const dateA = new Date(a.data.date).getTime();
     const dateB = new Date(b.data.date).getTime();
     return dateB - dateA;
@@ -52,22 +52,24 @@ export default async function HomePage({
   const allTags = [
     "All",
     ...Array.from(
-      new Set(sortedBlogs.flatMap((blog) => blog.data.tags || []))
+      new Set(sortedTemplates.flatMap((template) => template.data.tags || []))
     ).sort(),
   ];
 
   const selectedTag = resolvedSearchParams.tag || "All";
-  const filteredBlogs =
+  const filteredTemplates =
     selectedTag === "All"
-      ? sortedBlogs
-      : sortedBlogs.filter((blog) => blog.data.tags?.includes(selectedTag));
+      ? sortedTemplates
+      : sortedTemplates.filter((template) =>
+          template.data.tags?.includes(selectedTag)
+        );
 
   const tagCounts = allTags.reduce((acc, tag) => {
     if (tag === "All") {
-      acc[tag] = sortedBlogs.length;
+      acc[tag] = sortedTemplates.length;
     } else {
-      acc[tag] = sortedBlogs.filter((blog) =>
-        blog.data.tags?.includes(tag)
+      acc[tag] = sortedTemplates.filter((template) =>
+        template.data.tags?.includes(tag)
       ).length;
     }
     return acc;
@@ -89,10 +91,10 @@ export default async function HomePage({
         <div className="max-w-7xl mx-auto w-full">
           <div className="flex flex-col gap-2">
             <h1 className="font-medium text-4xl md:text-5xl tracking-tighter">
-              Dyloge Blog
+              My Templates
             </h1>
             <p className="text-muted-foreground text-sm md:text-base lg:text-lg">
-              Latest news and updates from Dyloge.
+              A collection of templates and resources from Dyloge.
             </p>
           </div>
         </div>
@@ -108,25 +110,25 @@ export default async function HomePage({
       </div>
 
       <div className="max-w-7xl mx-auto w-full px-6 lg:px-0">
-        <Suspense fallback={<div>Loading articles...</div>}>
+        <Suspense fallback={<div>Loading templates...</div>}>
           <div
             className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 relative overflow-hidden border-x border-border ${
-              filteredBlogs.length < 4 ? "border-b" : "border-b-0"
+              filteredTemplates.length < 4 ? "border-b" : "border-b-0"
             }`}
           >
-            {filteredBlogs.map((blog) => {
-              const date = new Date(blog.data.date);
+            {filteredTemplates.map((template) => {
+              const date = new Date(template.data.date);
               const formattedDate = formatDate(date);
 
               return (
                 <BlogCard
-                  key={blog.url}
-                  url={blog.url}
-                  title={blog.data.title}
-                  description={blog.data.description}
+                  key={template.url}
+                  url={template.url}
+                  title={template.data.title}
+                  description={template.data.description}
                   date={formattedDate}
-                  thumbnail={blog.data.thumbnail}
-                  showRightBorder={filteredBlogs.length < 3}
+                  thumbnail={template.data.thumbnail}
+                  showRightBorder={filteredTemplates.length < 3}
                 />
               );
             })}

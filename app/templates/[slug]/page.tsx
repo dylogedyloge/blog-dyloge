@@ -1,4 +1,4 @@
-import { docs, meta } from "@/.source";
+import { templateDocs, templateMeta } from "@/.source";
 import { DocsBody } from "fumadocs-ui/page";
 import { loader } from "fumadocs-core/source";
 import { createMDXSource } from "fumadocs-mdx";
@@ -21,9 +21,9 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-const blogSource = loader({
-  baseUrl: "/blog",
-  source: createMDXSource(docs, meta),
+const templateSource = loader({
+  baseUrl: "/templates",
+  source: createMDXSource(templateDocs, templateMeta),
 });
 
 const formatDate = (date: Date): string => {
@@ -34,14 +34,14 @@ const formatDate = (date: Date): string => {
   });
 };
 
-export default async function BlogPost({ params }: PageProps) {
+export default async function TemplatePost({ params }: PageProps) {
   const { slug } = await params;
 
   if (!slug || slug.length === 0) {
     notFound();
   }
 
-  const page = blogSource.getPage([slug]);
+  const page = templateSource.getPage([slug]);
 
   if (!page) {
     notFound();
@@ -69,9 +69,9 @@ export default async function BlogPost({ params }: PageProps) {
         <div className="max-w-7xl mx-auto flex flex-col gap-6 p-6">
           <div className="flex flex-wrap items-center gap-3 gap-y-5 text-sm text-muted-foreground">
             <Button variant="outline" asChild className="h-6 w-6">
-              <Link href="/">
+              <Link href="/templates">
                 <ArrowLeft className="w-4 h-4" />
-                <span className="sr-only">Back to all articles</span>
+                <span className="sr-only">Back to all templates</span>
               </Link>
             </Button>
             {Array.isArray(page.data.tags) && page.data.tags.length > 0 && (

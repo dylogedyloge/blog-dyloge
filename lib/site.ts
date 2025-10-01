@@ -1,8 +1,8 @@
 export const siteConfig = {
-  name: "Magic UI Blog",
-  url: "https://blog-magicui.vercel.app",
+  name: "Dyloge",
+  url: "https://dyloge.com",
   description:
-    "Modern React and web development tutorials, insights, and best practices.",
+    "Dyloge is a platform for creating and sharing templates.",
 };
 
 export type SiteConfig = typeof siteConfig;
