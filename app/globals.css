@@ -80,7 +80,13 @@
   65%, 85% {
     transform: translateZ(0) rotate(270deg);}
   100% {
-    transform: translateZ(0) rotate(360deg);}}}
+    transform: translateZ(0) rotate(360deg);}}
+  --animate-background-position-spin: background-position-spin 3000ms infinite alternate;
+  @keyframes background-position-spin {
+  0% {
+    background-position: top center;}
+  100% {
+    background-position: bottom center;}}}
 
 :root {
   --font-sans: var(--font-geist-sans);
