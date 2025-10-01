@@ -4,9 +4,9 @@
 @import "fumadocs-ui/css/preset.css";
 
 @custom-variant dark (&:is(.dark *));
-* {
+/* * {
   cursor: none !important;
-}
+} */
 
 @theme inline {
   --color-background: var(--background);
@@ -169,3 +169,7 @@
     border-bottom-right-radius: 0 !important;
   }
 }
+
+::view-transition-old(root), ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;}

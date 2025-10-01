@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Bonheur_Royale } from "next/font/google";
-import { ThemeToggle } from "@/components/theme-toggle";
+// import { ThemeToggle } from "@/components/theme-toggle";
+import { AnimatedThemeToggler } from "@/components/magicui/animated-theme-toggler"
 import { ShimmerButton } from "@/components/magicui/shimmer-button";
 
 const bonheurRoyale = Bonheur_Royale({
@@ -52,7 +53,7 @@ export function SiteNav() {
             >
               Templates
             </ShimmerButton>
-            <ThemeToggle />
+            <AnimatedThemeToggler />
           </nav>
         </div>
       </div>

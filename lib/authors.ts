@@ -15,6 +15,11 @@ export const authors: Record<string, Author> = {
     position: "Design System Engineer",
     avatar: "/authors/arghya.png",
   },
+  dyloge: {
+    name: "Amira",
+    position: "Designer",
+    avatar: "/authors/amira.png",
+  },
 } as const;
 
 export type AuthorKey = keyof typeof authors;

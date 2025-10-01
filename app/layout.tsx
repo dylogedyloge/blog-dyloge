@@ -6,7 +6,7 @@ import { metadataKeywords } from "./metadata";
 import { SiteNav } from "@/components/site-nav";
 import Footer from "@/components/footer";
 import "@/app/globals.css";
-import { SmoothCursor } from "@/components/magicui/smooth-cursor";
+// import { SmoothCursor } from "@/components/magicui/smooth-cursor";
 
 const UbuntuSans = Ubuntu({
   subsets: ["latin"],
@@ -47,7 +47,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body>
-      <SmoothCursor/>
+      {/* <SmoothCursor/> */}
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
