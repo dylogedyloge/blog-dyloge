@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import { cn } from "@/lib/utils";
 import { NeonGradientCard } from "@/components/magicui/neon-gradient-card";
 
 interface PromoContentProps {
@@ -14,7 +13,6 @@ export function PromoContent({
 }: PromoContentProps) {
   if (variant === "mobile") {
     return (
-      // <div className={cn("border-t border-border bg-muted/20 p-3", className)}>
       <NeonGradientCard>
         <div className="flex items-center gap-3">
           <img
