@@ -32,6 +32,8 @@ export function PromoContent({
           </div>
           <a
             href="http://www.wix.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-xs text-primary hover:text-primary/80 font-medium"
             onClick={(e) => e.stopPropagation()}
           >

@@ -1,15 +1,10 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { DotPattern } from "@/components/magicui/dot-pattern";
 
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center w-full z-10">
-                  <div className="opacity-35">
-  <DotPattern />
-  </div>
-      <div className="absolute top-0 left-0 z-0 w-full h-[500px] [mask-image:linear-gradient(to_top,transparent_25%,black_95%)]">
-      </div>
+      <div className="absolute top-0 left-0 z-0 w-full h-[500px] [mask-image:linear-gradient(to_top,transparent_25%,black_95%)]"></div>
       <div className="text-center flex flex-col gap-4 max-w-xs mx-auto relative">
         <h1 className="text-8xl font-mono font-bold drop-shadow-lg text-primary">
           404
