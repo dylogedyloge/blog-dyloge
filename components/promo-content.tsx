@@ -7,10 +7,7 @@ interface PromoContentProps {
   className?: string;
 }
 
-export function PromoContent({
-  variant = "desktop",
-  className,
-}: PromoContentProps) {
+export function PromoContent({ variant = "desktop" }: PromoContentProps) {
   if (variant === "mobile") {
     return (
       <NeonGradientCard>
