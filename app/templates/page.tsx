@@ -5,6 +5,9 @@ import { Suspense } from "react";
 import { BlogCard } from "@/components/blog-card";
 import { TagFilter } from "@/components/tag-filter";
 import { TextAnimate } from "@/components/magicui/text-animate";
+import { HighlightText } from "@/components/ui/shadcn-io/highlight-text";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 interface TemplateData {
   title: string;
@@ -79,6 +82,24 @@ export default async function TemplatesPage({
     <div className="min-h-screen bg-background relative">
       <div className="absolute top-0 left-0 z-0 w-full h-[200px] [mask-image:linear-gradient(to_top,transparent_25%,black_95%)]"></div>
       <div className="p-6 border-b border-border flex flex-col gap-6 min-h-[250px] justify-center relative z-10">
+        <div className="max-w-7xl mx-auto w-full">
+          <div className="flex w-full max-w-sm items-center gap-2 mb-2">
+            <div className="flex flex-col gap-1">
+              <HighlightText
+                text=" Subscribe & get 50% off on my Etsy & Creative Market shops!"
+                inView={true}
+                transition={{ duration: 1.5, ease: "easeOut" }}
+                className="text-pretty text-sm"
+              />
+              <div className="flex w-full max-w-sm items-center gap-2">
+                <Input type="email" placeholder="Email" />{" "}
+                <Button type="submit" variant="outline">
+                  Subscribe
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="max-w-7xl mx-auto w-full">
           <div className="flex flex-col gap-2">
             <h1 className="font-medium text-4xl md:text-5xl tracking-tighter">

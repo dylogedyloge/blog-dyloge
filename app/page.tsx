@@ -5,6 +5,10 @@ import { Suspense } from "react";
 import { BlogCard } from "@/components/blog-card";
 import { TagFilter } from "@/components/tag-filter";
 import { TextAnimate } from "@/components/magicui/text-animate";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { AnimatedTooltip } from "@/components/ui/shadcn-io/animated-tooltip";
+import { HighlightText } from "@/components/ui/shadcn-io/highlight-text";
 
 interface BlogData {
   title: string;
@@ -41,6 +45,15 @@ export default async function HomePage({
 }: {
   searchParams: Promise<{ tag?: string }>;
 }) {
+  // Example tooltip items
+  const tooltipItems = [
+    {
+      id: 1,
+      name: "Subscribe for updates!",
+      designation: "Get the latest news in your inbox.",
+      image: "/magicui-logo.png",
+    },
+  ];
   const resolvedSearchParams = await searchParams;
   const allPages = blogSource.getPages() as BlogPage[];
   const sortedBlogs = allPages.sort((a, b) => {
@@ -78,17 +91,35 @@ export default async function HomePage({
       <div className="absolute top-0 left-0 z-0 w-full h-[200px] [mask-image:linear-gradient(to_top,transparent_25%,black_95%)]"></div>
       <div className="p-6 border-b border-border flex flex-col gap-6 min-h-[250px] justify-center relative z-10">
         <div className="max-w-7xl mx-auto w-full">
-          <div className="flex flex-col gap-2">
-            <h1 className="font-medium text-4xl md:text-5xl tracking-tighter">
-              Blog
-            </h1>
-            <TextAnimate
-              animation="blurIn"
-              as="p"
-              className="text-muted-foreground text-sm md:text-base lg:text-lg"
-            >
-              Latest news and updates from Dyloge.
-            </TextAnimate>
+          <div className="flex w-full max-w-sm items-center gap-2 mb-2">
+            <div className="flex flex-col gap-1">
+              <HighlightText
+                text=" Subscribe & get 50% off on my Etsy & Creative Market shops!"
+                inView={true}
+                transition={{ duration: 1.5, ease: "easeOut" }}
+                className="text-pretty text-sm"
+              />
+              <div className="flex w-full max-w-sm items-center gap-2">
+                <Input type="email" placeholder="Email" />{" "}
+                <Button type="submit" variant="outline">
+                  Subscribe
+                </Button>
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-between">
+            <div className="flex flex-col gap-2">
+              <h1 className="font-medium text-4xl md:text-5xl tracking-tighter">
+                Blog
+              </h1>
+              <TextAnimate
+                animation="blurIn"
+                as="p"
+                className="text-muted-foreground text-sm md:text-base lg:text-lg"
+              >
+                Latest news and updates from Dyloge.
+              </TextAnimate>
+            </div>
           </div>
         </div>
         {allTags.length > 0 && (
