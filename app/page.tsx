@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { AnimatedTooltip } from "@/components/ui/shadcn-io/animated-tooltip";
 import { HighlightText } from "@/components/ui/shadcn-io/highlight-text";
+import SubscriptionInput from "@/components/subscription-input";
 
 interface BlogData {
   title: string;
@@ -99,12 +100,7 @@ export default async function HomePage({
                 transition={{ duration: 1.5, ease: "easeOut" }}
                 className="text-pretty text-sm"
               />
-              <div className="flex w-full max-w-sm items-center gap-2">
-                <Input type="email" placeholder="Email" />{" "}
-                <Button type="submit" variant="outline">
-                  Subscribe
-                </Button>
-              </div>
+              <SubscriptionInput />
             </div>
           </div>
           <div className="flex justify-between">
